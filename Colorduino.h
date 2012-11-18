@@ -47,7 +47,7 @@ define the IO
 #define SDA* portOutputRegister(digitalPinToPort(7))
 #define open_line0	{*portOutputRegister(digitalPinToPort(8))=digitalPinToBitMask(8);}
 #define open_line1	{*portOutputRegister(digitalPinToPort(9))=digitalPinToBitMask(9);}
-#define open_line2	{*portOutputRegister(digitalPinToPort(10))=digitalPinToBitMask(10);}
+#define open_line2	{*portOutputRegister(digitalPinToPort(5))=digitalPinToBitMask(5);}
 #define open_line3	{*portOutputRegister(digitalPinToPort(11))=digitalPinToBitMask(11);}
 #define open_line4	{*portOutputRegister(digitalPinToPort(12))=digitalPinToBitMask(12);}
 #define open_line5	{*portOutputRegister(digitalPinToPort(13))=digitalPinToBitMask(13);}
@@ -92,7 +92,7 @@ class ColorduinoObject {
     {
     DDRD = 0xff; // set all pins direction of PortD
     DDRC = 0xff; // set all pins direction of PortC
-    DDRB = 0xff; // set all pins direction of PortB
+    DDRB = 0xfb; // set all pins direction of PortB
     
     PORTD = 0x00; // set all pins output is low of PortD
     PORTC = 0x00; // set all pins output is low of PortC
