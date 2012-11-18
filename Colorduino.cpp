@@ -83,23 +83,6 @@ void ColorduinoObject::ColorFill(unsigned char R,unsigned char G,unsigned char B
 // global instance
 ColorduinoObject Colorduino;
 
-#if defined (__AVR_ATmega32U4__)
-ISR(TIMER4_OVF_vect)          //Timer4  Service 
-{  
-  //ISR fires every 256-TCNT4 ticks
-  //so if TCNT4 = 100, ISR fires every 156 ticks
-  //prescaler = 128 so ISR fires every 16MHz / 128 = 125KHz
-  //125KHz / 156 = 801.282Hz / 8 rows = 100.16Hz refresh rate
-  //if TCNT4 = 61, ISR fires every 256 - 61 = 195 ticks
-  //125KHz / 195 = 641.026Hz / 8 rows = 80.128Hz refresh rate
-  //TCNT4 = 100;
-  TCNT4 = 61;
-  close_all_lines;  
-  Colorduino.run();
-  Colorduino.open_line(Colorduino.line);
-  if (++Colorduino.line > 7) Colorduino.line = 0;
-}
-#else
 ISR(TIMER2_OVF_vect)          //Timer2  Service 
 { 
  // ISR fires every 256-TCNT2 ticks
@@ -115,7 +98,6 @@ ISR(TIMER2_OVF_vect)          //Timer2  Service
   Colorduino.open_line(Colorduino.line);
   if (++Colorduino.line > 7) Colorduino.line = 0;
 }
-#endif
 
 /****************************************************
 the LED Hardware operate functions zone
